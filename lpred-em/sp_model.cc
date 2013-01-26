@@ -190,20 +190,20 @@ int main()
 	theta[1] = 0.4;
 	theta[2] = 10;
 	theta[3] = 0.005;
-	freopen("input2.txt", "r", stdin);
-	freopen("sp2-lqi.out", "w", stdout);
+	freopen("data/iris_input.csv", "r", stdin);
+	freopen("data/iris_prr.out", "w", stdout);
 	
 	int cnt = 0;
-	while (scanf("%lf%lf%lf", &rssi, &lqi, &prr) != EOF)
+	while (scanf("%lf,%lf,%lf", &prr, &lqi, &rssi) != EOF)
 	{
 		if (cnt >= 5) {
-			y[5] = lqi/75;
+			y[5] = prr/10;
 			predictLQI(&pvalue);
-			printf("%lf\n", pvalue*75);
+			printf("%lf,%lf\n", prr, pvalue*10);
 			continue;
 		}
-		y[cnt++] = lqi/75;
-		printf("-1\n");
+		y[cnt++] = prr/10;
+		printf("%lf,-1\n", prr);
 	}
 	return 0;
 }
